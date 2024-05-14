@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,7 +12,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -32,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                  composeImage(heading = getString(R.string.heading), startingParagraph =getString(R.string.starting_paragraph) , endingParagraph =getString(R.string.ending_paragraph) )
+                  ComposeImage(heading = getString(R.string.heading), startingParagraph =getString(R.string.starting_paragraph) , endingParagraph =getString(R.string.ending_paragraph) )
                 }
             }
         }
@@ -40,7 +38,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun paragraphText(heading: String,startingParagraph:String,endingParagraph: String,modifier: Modifier = Modifier) {
+fun ParagraphText(heading: String,startingParagraph:String,endingParagraph: String,modifier: Modifier = Modifier) {
         Column{
             Text(
                 text = heading,
@@ -63,14 +61,14 @@ fun paragraphText(heading: String,startingParagraph:String,endingParagraph: Stri
     }
 
 @Composable
-fun composeImage(heading: String,startingParagraph: String,endingParagraph: String,modifier: Modifier=Modifier){
-  val image= painterResource(R.drawable.bg_compose_background)
+fun ComposeImage(heading: String,startingParagraph: String,endingParagraph: String){
+  val image= painterResource(id=R.drawable.bg_compose_background)
     Column {
             Image(
                 painter = image,
                 contentDescription = null
             )
-            paragraphText(
+            ParagraphText(
                 heading = heading,
                 startingParagraph = startingParagraph,
                 endingParagraph = endingParagraph
@@ -82,7 +80,7 @@ fun composeImage(heading: String,startingParagraph: String,endingParagraph: Stri
 @Composable
 fun GreetingPreview() {
     JetpackComposeAppTheme {
-        composeImage(
+        ComposeImage(
             heading = stringResource(id = R.string.heading) , 
             startingParagraph = stringResource(id = R.string.starting_paragraph), 
             endingParagraph = stringResource(id = R.string.ending_paragraph))
